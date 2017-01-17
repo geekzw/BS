@@ -1,25 +1,18 @@
 package com.gzw.service;
 
-import com.gzw.dao.UserDao;
+import com.gzw.domain.response.BaseResponse;
 import com.gzw.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
 
 /**
- * Created by shuai on 17/1/16.
+ * Created by gzw on 2017/1/17.
  */
-@Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    UserDao userDao;
+    public boolean insertUser(User user);
 
-    public boolean insertUser(User user){
-        return userDao.insertUser(user.getUsername(),user.getPassword(),user.getPhone()) == 0?false:true;
-    }
+    public BaseResponse<String> login(User user);
 
-    public String login(User user){
-        int code = userDao.login(user.getUsername(),user.getPassword());
-        return null;
-    }
+    public void insertSession(String sessionId,String session);
 }

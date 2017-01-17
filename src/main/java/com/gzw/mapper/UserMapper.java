@@ -16,4 +16,7 @@ public interface UserMapper {
     @Select("select * from user where username = #{username}")
     public User login(@Param("username") String username, @Param("password")  String password);
 
+    @Insert("INSERT INTO session(session_id, session) VALUES(#{session_id},#{session})")
+    public void insertSession(@Param("session_id") String sessionId, @Param("session")  String session);
+
 }
